@@ -1,0 +1,599 @@
+'var posisi kamera
+Dim cx# = 0
+Dim cy# = 3
+Dim cz# = 20
+
+'var posisi titik pandang
+Dim vx# = 0
+Dim vy# = 0
+Dim vz# = 0
+
+'var perpindahan
+Dim move# = 0.01
+
+'var texture
+Dim kayu
+
+kayu = loadmipmaptexture("kayu.jpg")
+glEnable (GL_TEXTURE_2D)
+
+
+while true
+glClear(GL_COLOR_BUFFER_BIT or GL_DEPTH_BUFFER_BIT)
+glLoadIdentity()
+
+gluLookAt (cx#, cy#, cz#, vx#, vy#, vz#, 0, 1, 0)
+
+glBindTexture (GL_Texture_2D, kayu)
+
+glBegin (GL_QUADS) 'papan meja
+
+     'sisi belakang
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,1)
+    glVertex3f (-5.0, 1.0, -3.0) 'titik kiri atas
+
+    'glColor3f(1.0, 0.0, 0.0)
+    glTexCoord2f(1,1)
+    glVertex3f(5.0, 1.0, -3.0) 'titik kanan atas
+    
+    'glColor3f(0.0, 1.0, 0.0)
+    glTexCoord2f(1,0)
+    glVertex3f(5.0, 0.0, -3.0) 'titik kanan bawah
+    
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,0)
+    glVertex3f (-5.0, 0.0, -3.0) 'titik kiri bawah
+
+
+glEnd()
+
+glBegin (GL_QUADS) 'papan meja 
+    
+    'sisi kanan
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,1)
+    glVertex3f (5.0, 1.0, -3.0)
+
+    'glColor3f(1.0, 0.0, 0.0)
+    glTexCoord2f(1,1)
+    glVertex3f(5.0, 1.0, 3.0)
+    
+    'glColor3f(0.0, 1.0, 0.0)
+    glTexCoord2f(1,0)
+    glVertex3f(5.0, 0.0, 3.0)
+    
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,0)
+    glVertex3f (5.0, 0.0, -3.0)
+
+glEnd()
+
+glBegin (GL_QUADS) 'papan meja 
+
+    'sisi kiri    
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,1)
+    glVertex3f (-5.0, 1.0, 3.0)
+
+    'glColor3f(1.0, 0.0, 0.0)
+    glTexCoord2f(1,1)
+    glVertex3f(-5.0, 1.0, -3.0)
+
+    'glColor3f(0.0, 1.0, 0.0)
+    glTexCoord2f(1,0)
+    glVertex3f(-5.0, 0.0, -3.0)
+    
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,0)
+    glVertex3f (-5.0, 0.0, 3.0)
+
+glEnd()
+
+glBegin (GL_QUADS) 'papan meja
+
+    'sisi bawah    
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,1)
+    glVertex3f (-5.0, 0.0, -3.0)
+
+    'glColor3f(1.0, 0.0, 0.0)
+    glTexCoord2f(1,1)
+    glVertex3f(5.0, 0.0, -3.0)
+    
+    'glColor3f(0.0, 1.0, 0.0)
+    glTexCoord2f(1,0)
+    glVertex3f(5.0, 0.0, 3.0)
+    
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,0)
+    glVertex3f (-5.0, 0.0, 3.0)
+
+glEnd()
+
+glBegin (GL_QUADS) 'papan meja 
+
+    'sisi atas    
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,1)
+    glVertex3f (-5.0, 1.0, -3.0)
+
+    'glColor3f(1.0, 0.0, 0.0)
+    glTexCoord2f(1,1)
+    glVertex3f(5.0, 1.0, -3.0)
+    
+    'glColor3f(0.0, 1.0, 0.0)
+    glTexCoord2f(1,0)
+    glVertex3f(5.0, 1.0, 3.0)
+    
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,0)
+    glVertex3f (-5.0, 1.0, 3.0)
+
+glEnd()
+
+glBegin (GL_QUADS)   'papan meja
+
+    'sisi depan    
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,1)
+    glVertex3f (-5.0, 1.0, 3.0)
+
+    'glColor3f(1.0, 0.0, 0.0)
+    glTexCoord2f(1,1)
+    glVertex3f(5.0, 1.0, 3.0)
+    
+    'glColor3f(0.0, 1.0, 0.0)
+    glTexCoord2f(1,0)
+    glVertex3f(5.0, 0.0, 3.0)
+    
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,0)
+    glVertex3f (-5.0, 0.0, 3.0)
+
+
+glEnd()
+
+glBegin (GL_QUADS) 'kaki meja belakang kanan
+
+    'sisi belakang
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,1)
+    glVertex3f (4.0, 0.0, -2.0)
+
+    'glColor3f(1.0, 0.0, 0.0)
+    glTexCoord2f(1,1)
+    glVertex3f(4.5, 0.0, -2.0)
+    
+    'glColor3f(0.0, 1.0, 0.0)
+    glTexCoord2f(1,0)
+    glVertex3f(4.5, -5.0, -2.0)
+                          
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,0)
+    glVertex3f (4.0, -5.0, -2.0)
+
+glEnd()
+
+glBegin (GL_QUADS) 'kaki meja belakang kanan
+
+    'sisi kanan
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,1)
+    glVertex3f (4.5, 0.0, -2.0)
+
+    'glColor3f(1.0, 0.0, 0.0)
+    glTexCoord2f(1,1)
+    glVertex3f(4.5, 0.0, -1.5)
+    
+    'glColor3f(0.0, 1.0, 0.0)
+    glTexCoord2f(1,0)
+    glVertex3f(4.5, -5.0, -1.5)
+                          
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,0)
+    glVertex3f (4.5, -5.0, -2.0)
+
+glEnd()
+
+
+glBegin (GL_QUADS) 'kaki meja belakang kanan
+
+    'sisi kiri
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,1)
+    glVertex3f (4.0, 0.0, -2.0)
+
+    'glColor3f(1.0, 0.0, 0.0)
+    glTexCoord2f(1,1)
+    glVertex3f(4.0, 0.0, -1.5)
+    'glColor3f(0.0, 1.0, 0.0)
+    glTexCoord2f(1,0)
+    glVertex3f(4.0, -5.0, -1.5)
+                          
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,0)
+    glVertex3f (4.0, -5.0, -2.0)
+
+glEnd()
+
+glBegin (GL_QUADS) 'kaki meja belakang kanan
+
+    'sisi depan
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,1)
+    glVertex3f (4.0, 0.0, -1.5)
+
+    'glColor3f(1.0, 0.0, 0.0)
+    glTexCoord2f(1,1)
+    glVertex3f(4.5, 0.0, -1.5)
+    
+    'glColor3f(0.0, 1.0, 0.0)
+    glTexCoord2f(1,0)
+    glVertex3f(4.5, -5.0, -1.5)
+                          
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,0)
+    glVertex3f (4.0, -5.0, -1.5)
+
+glEnd()
+
+glBegin (GL_QUADS) 'kaki meja belakang kanan
+
+    'sisi bawah
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,1)
+    glVertex3f (4.0, -5.0, -2.0)
+
+    'glColor3f(1.0, 0.0, 0.0)
+    glTexCoord2f(1,1)
+    glVertex3f(4.5, -5.0, -2.0)
+    
+    'glColor3f(0.0, 1.0, 0.0)
+    glTexCoord2f(1,0)
+    glVertex3f(4.5, -5.0, -1.5)
+                          
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,0)
+    glVertex3f (4.0, -5.0, -1.5)
+
+glEnd()
+
+
+glBegin (GL_QUADS) 'kaki meja belakang kiri
+
+    'sisi belakang
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,1)
+    glVertex3f (-4.5, 0.0, -2.0)
+
+    'glColor3f(1.0, 0.0, 0.0)
+    glTexCoord2f(1,1)
+    glVertex3f(-4.0, 0.0, -2.0)
+
+    'glColor3f(0.0, 1.0, 0.0)
+    glTexCoord2f(1,0)
+    glVertex3f(-4.0, -5.0, -2.0)
+                          
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,0)
+    glVertex3f (-4.5, -5.0, -2.0)
+
+glEnd()
+
+glBegin (GL_QUADS) 'kaki meja belakang kiri
+
+    'sisi kanan
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,1)
+    glVertex3f (-4.0, 0.0, -2.0)
+
+    'glColor3f(1.0, 0.0, 0.0)
+    glTexCoord2f(1,1)
+    glVertex3f(-4.0, 0.0, -1.5)
+    
+    'glColor3f(0.0, 1.0, 0.0)
+    glTexCoord2f(1,0)
+    glVertex3f(-4.0, -5.0, -1.5)
+                          
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,0)
+    glVertex3f (-4.0, -5.0, -2.0)
+
+glEnd()
+
+glBegin (GL_QUADS) 'kaki meja belakang kiri
+
+    'sisi kanan
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,1)
+    glVertex3f (-4.5, 0.0, -2.0)
+
+    'glColor3f(1.0, 0.0, 0.0)
+    glTexCoord2f(1,1)
+    glVertex3f(-4.5, 0.0, -1.5)
+    
+    'glColor3f(0.0, 1.0, 0.0)
+    glTexCoord2f(1,0)
+    glVertex3f(-4.5, -5.0, -1.5)
+                          
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,0)
+    glVertex3f (-4.5, -5.0, -2.0)
+
+glEnd()
+
+glBegin (GL_QUADS) 'kaki meja belakang kiri
+
+    'sisi depan
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,1)
+    glVertex3f (-4.5, 0.0, -1.5)
+
+    'glColor3f(1.0, 0.0, 0.0)
+    glTexCoord2f(1,1)
+    glVertex3f(-4.0, 0.0, -1.5)
+    
+    'glColor3f(0.0, 1.0, 0.0)
+    glTexCoord2f(1,0)
+    glVertex3f(-4.0, -5.0, -1.5)
+                          
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,0)
+    glVertex3f (-4.5, -5.0, -1.5)
+
+glEnd()
+
+glBegin (GL_QUADS) 'kaki meja belakang kiri
+
+    'sisi bawah
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,1)
+    glVertex3f (-4.5, -5.0, -2.0)
+
+    'glColor3f(1.0, 0.0, 0.0)
+    glTexCoord2f(1,1)
+    glVertex3f(-4.0, -5.0, -2.0) 
+    
+    'glColor3f(0.0, 1.0, 0.0)
+    glTexCoord2f(1,0)
+    glVertex3f(-4.0, -5.0, -1.5) 
+                          
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,0)
+    glVertex3f (-4.5, -5.0, -1.5) 
+
+glEnd()
+
+glBegin (GL_QUADS) 'kaki meja depan kanan
+
+    'sisi belakang
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,1)
+    glVertex3f (4.0, 0.0, 1.5) 
+
+    'glColor3f(1.0, 0.0, 0.0)
+    glTexCoord2f(1,1)
+    glVertex3f(4.5, 0.0, 1.5) 
+    
+    'glColor3f(0.0, 1.0, 0.0)
+    glTexCoord2f(1,0)
+    glVertex3f(4.5, -5.0, 1.5) 
+                          
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,0)
+    glVertex3f (4.0, -5.0, 1.5) 
+
+glEnd()
+
+glBegin (GL_QUADS) 'kaki meja belakang kanan
+
+    'sisi kanan
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,1)
+    glVertex3f (4.5, 0.0, 1.5) 
+    
+    'glColor3f(1.0, 0.0, 0.0)
+    glTexCoord2f(1,1)
+    glVertex3f(4.5, 0.0, 2.0) 
+    
+    'glColor3f(0.0, 1.0, 0.0)
+    glTexCoord2f(1,0)
+    glVertex3f(4.5, -5.0, 2.0) 
+                          
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,0)
+    glVertex3f (4.5, -5.0, 1.5) 
+
+glEnd()
+
+glBegin (GL_QUADS) 'kaki meja belakang kanan
+
+    'sisi kiri
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,1)
+    glVertex3f (4.0, 0.0, 1.5) 
+    
+    'glColor3f(1.0, 0.0, 0.0)
+    glTexCoord2f(1,1)
+    glVertex3f(4.0, 0.0, 2.0) 
+    
+    'glColor3f(0.0, 1.0, 0.0)
+    glTexCoord2f(1,0)
+    glVertex3f(4.0, -5.0, 2.0) 
+                          
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,0)
+    glVertex3f (4.0, -5.0, 1.5) 
+
+glEnd()
+
+glBegin (GL_QUADS) 'kaki meja depan kanan
+
+    'sisi depan
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,1)
+    glVertex3f (4.0, 0.0, 2.0) 
+
+    'glColor3f(1.0, 0.0, 0.0)
+    glTexCoord2f(1,1)
+    glVertex3f(4.5, 0.0, 2.0) 
+    
+    'glColor3f(0.0, 1.0, 0.0)
+    glTexCoord2f(1,0)
+    glVertex3f(4.5, -5.0, 2.0) 
+                          
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,0)
+    glVertex3f (4.0, -5.0, 2.0) 
+
+glEnd()
+
+glBegin (GL_QUADS) 'kaki meja depan kanan
+
+    'sisi bawah
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,1)
+    glVertex3f (4.5, -5.0, 2.0) 
+
+    'glColor3f(1.0, 0.0, 0.0)
+    glTexCoord2f(1,1)
+    glVertex3f(4.0, -5.0, 2.0) 
+    
+    'glColor3f(0.0, 1.0, 0.0)
+    glTexCoord2f(1,0)
+    glVertex3f(4.0, -5.0, 1.5) 
+                          
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,0)
+    glVertex3f (4.5, -5.0, 1.5) 
+
+glEnd()
+
+
+glBegin (GL_QUADS) 'kaki meja depan kiri
+
+    'sisi belakang
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,1)
+    glVertex3f (-4.5, 0.0, 2.0) 
+
+    'glColor3f(1.0, 0.0, 0.0)
+    glTexCoord2f(1,1)
+    glVertex3f(-4.0, 0.0, 2.0) 
+    
+    'glColor3f(0.0, 1.0, 0.0)
+    glTexCoord2f(1,0)
+    glVertex3f(-4.0, -5.0, 2.0) 
+                          
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,0)
+    glVertex3f (-4.5, -5.0, 2.0) 
+
+glEnd()
+
+glBegin (GL_QUADS) 'kaki meja depan kiri
+
+    'sisi kanan
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,1)
+    glVertex3f (-4.0, 0.0, 2.0) 
+
+    'glColor3f(1.0, 0.0, 0.0)
+    glTexCoord2f(1,1)
+    glVertex3f(-4.0, 0.0, 1.5)
+    
+    'glColor3f(0.0, 1.0, 0.0)
+    glTexCoord2f(1,0)
+    glVertex3f(-4.0, -5.0, 1.5) 
+                          
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,0)
+    glVertex3f (-4.0, -5.0, 2.0) 
+
+glEnd()
+
+glBegin (GL_QUADS) 'kaki meja depan kiri
+
+    'sisi kanan
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,1)
+    glVertex3f (-4.5, 0.0, 2.0)
+
+    'glColor3f(1.0, 0.0, 0.0)
+    glTexCoord2f(1,1)
+    glVertex3f(-4.5, 0.0, 1.5)
+    
+    'glColor3f(0.0, 1.0, 0.0)
+    glTexCoord2f(1,0)
+    glVertex3f(-4.5, -5.0, 1.5)
+                          
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,0)
+    glVertex3f (-4.5, -5.0, 2.0)
+
+glEnd()
+
+glBegin (GL_QUADS) 'kaki meja depan kiri
+
+    'sisi depan
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,1)
+    glVertex3f (-4.5, 0.0, 1.5)
+
+    'glColor3f(1.0, 0.0, 0.0)
+    glTexCoord2f(1,1)
+    glVertex3f(-4.0, 0.0, 1.5)
+    
+    'glColor3f(0.0, 1.0, 0.0)
+    glTexCoord2f(1,0)
+    glVertex3f(-4.0, -5.0, 1.5)
+                          
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,0)
+    glVertex3f (-4.5, -5.0, 1.5)
+
+glEnd()
+
+glBegin (GL_QUADS) 'kaki meja depan kiri
+
+    'sisi bawah
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,1)
+    glVertex3f (-4.5, -5.0, 2.0)
+
+    'glColor3f(1.0, 0.0, 0.0)
+    glTexCoord2f(1,1)
+    glVertex3f(-4.0, -5.0, 2.0)
+    
+    'glColor3f(0.0, 1.0, 0.0)
+    glTexCoord2f(1,0)
+    glVertex3f(-4.0, -5.0, 1.5)
+                          
+    'glColor3f (0.0, 0.0, 1.0)
+    glTexCoord2f(0,0)
+    glVertex3f (-4.5, -5.0, 1.5)
+
+glEnd()
+
+swapBuffers()
+
+if scankeydown(VK_RIGHT) then       ' ke kanan
+vx# = vx# + move#
+elseif scankeydown(VK_LEFT) then   ' ke kiri
+vx# = vx# - move#
+elseif scankeydown(VK_UP) then      ' maju
+cz# = cz# - move#
+vz# = vz# - move#
+elseif scankeydown(VK_DOWN) then    ' mundur
+cz# = cz# + move#
+vz# = vz# + move#
+elseif scankeydown (VK_PRIOR) then  ' naik
+cy# = cy# + move#
+vy# = vy# + move#
+elseif scankeydown (VK_NEXT) then ' turun
+cy# = cy# - move#
+vy# = cy# - move#
+endif
+
+wend
